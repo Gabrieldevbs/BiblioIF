@@ -1,0 +1,46 @@
+# Ambiente virtual
+venv/
+.env/
+.venv/
+
+# Arquivos de configuração local e variáveis secretas
+*.env
+*.secret
+*.key
+
+# Arquivos compilados do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Cache do Django
+*.log
+*.pot
+*.py,cover
+db.sqlite3
+
+# Diretórios de cache e build
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Arquivos temporários do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de IDEs/editores
+.vscode/
+.idea/
+*.swp
+
+# Arquivos de testes e relatórios
+.coverage
+htmlcov/
+.tox/
+pytest_cache/
+
+# Arquivos estáticos e media gerados
+staticfiles/
+media/

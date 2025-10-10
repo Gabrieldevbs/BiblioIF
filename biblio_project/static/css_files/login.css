@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+}
+
+.form-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-image: url(../images/background_login.png);
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container h2{
+    color: #ffffff;
+    font-size: 37px;
+    font-family: "BBH Sans Hegarty", sans-serif;
+    margin-bottom: 70px;
+}
+
+.form-container .formulary-content{
+    width: 600px;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+}
+
+.formulary-content h3{
+    font-size: 30px;
+    font-family: "BBH Sans Hegarty", sans-serif;
+}
+
+.user-photo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+    margin: 20px 0;
+}
+
+.user-photo img{
+    width: 80%;
+    height: 80%;
+}
+
+.formulary-content .formulary{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formulary-content .formulary #username, .formulary-content .formulary #password{
+    width: 354.56px;
+    height: 38px;
+}
+
+.formulary-content .formulary .btn-primary{
+    width: 300px;
+}
+
+.formulary-content .formulary h4{
+    margin-top: 4px;
+    margin-bottom: 0px;
+    font-size: 14px;
+    color: #ff0000;
+}

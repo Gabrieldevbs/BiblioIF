@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Tela de Cadastro</h1>
+    <form action='{% url "biblio_project:sign_in" %}' method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Username</h2>
+        <input type="text" id="username" name="username">
+        <br>
+        <br>
+        <h2>email</h2>
+        <input type="email" id="email" name="email">
+        <br>
+        <br>
+        <h2>password</h2>
+        <input type="password" id="password" name="password">
+        <br>
+        <br>
+        <h2>first_name</h2>
+        <input type="text" id="first_name" name="first_name">
+        <br>
+        <br>
+        <h2>last_name</h2>
+        <input type="text" id="last_name" name="last_name">
+        <br>
+        <br>
+        <h2>photo</h2>
+        <input type="file" accept=".png, .jpg" id="photo" name="photo">
+        <br>
+        <br>
+        <h2>cpf</h2>
+        <input type="text" id="cpf" name="cpf">
+        <br>
+        <br>
+        <h2>address</h2>
+        <input type="text" id="address" name="address">
+        <br>
+        <br>
+        <h2>city</h2>
+        <input type="text" id="city" name="city">
+        <br>
+        <br>
+        <h2>state</h2>
+        <input type="text" id="state" name="state">
+        <br>
+        <br>
+        <h2>country</h2>
+        <input type="text" id="country" name="country">
+        <br>
+        <br>
+        <h2>zip_code</h2>
+        <input type="text" id="zip_code" name="zip_code">
+        <br>
+        <br>
+        <button type="submit">Cadastrar</button>
+    </form>
+    <a href="{% url 'biblio_project:home' %}"><button>Home</button></a>
+</body>
+</html>
