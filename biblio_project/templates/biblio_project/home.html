@@ -1,13 +1,44 @@
+{% extends 'biblio_project/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>HOME</h1>
-    <a href="{% url 'biblio_project:sign_in' %}"><button>Sign in</button></a>
-</body>
-</html>
+{% block link_css %} <link rel="stylesheet" href="{% static 'css_files/favorited.css' %}"> {% endblock %}
+{% block content %}
+    <div class="books-container">
+        <h2 class="hello_user">Olá, {{user.username}}! Seja Bem-Vindo</h2>
+        <h3>Sugestões de Leitura</h3>
+        <div class="books">
+            {% for book in books %}
+            <div class="books-content">
+                {% if book.image.url %}
+                    <img src="{{book.image.url}}" alt="">
+                {% else %}
+                    <img src="{% static 'images/Home.png' %}" alt="">
+                {% endif %}
+                <h4>{{book.title}}</h4>
+                <h5>{{book.author}}</h5>
+                <h6>R$ {{book.buy_price}}</h6>
+                <a href="{% url 'biblio_project:detail' book.id %}"><button type="button" class="btn btn-primary">Mais detalhes</button></a>
+                {% if user.is_authenticated %}
+                    <form action="{% url 'biblio_project:favorited' book.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="D" class="btn btn-primary">Adicionar aos Favoritos</button>
+                    </form>
+                {% endif %}
+                {% if user.is_staff %}
+                    <a href="{% url 'biblio_project:edit_book' book.id %}"><button type="button" class="btn btn-primary">Editar livro</button></a>
+                    <form action="{% url 'biblio_project:delete' book.id %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <a href="{% url 'biblio_project:delete' book.id %}"><button type="button" class="btn btn-primary delete">Apagar livro</button></a>
+                    </form>
+                {% endif %}
+                {% if user.is_authenticated %}
+                    <form action="{% url 'biblio_project:purchased' book.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-success">Comprar agora</button>
+                    </form>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+        

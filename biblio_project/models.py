@@ -13,7 +13,7 @@ class InfoUser(models.Model):
 
 
 class Address(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='addresses')
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=50)
     city = models.CharField(max_length=30)
     state = models.CharField(max_length=30)
@@ -25,9 +25,9 @@ class Book(models.Model):
     author = models.CharField(max_length=50)
     available = models.BooleanField(default=True)
     pages = models.PositiveIntegerField()
-    buy_price = models.FloatField(max_length=10)
+    buy_price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField(max_length=500)
-    image = models.ImageField(upload_to='books/photos/', blank=True, null=False)
+    image = models.ImageField(upload_to='books/photos/', blank=True, null=True)
 
 class Category(models.Model):
     book = models.ManyToManyField(Book, related_name='categories')
@@ -37,7 +37,6 @@ class Purchase(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='purchases')
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='purchases')
     date_purchase = models.DateField(auto_now_add=True)
-    purchase_price = models.FloatField()
 
     class Meta:
         unique_together = ('user', 'book')

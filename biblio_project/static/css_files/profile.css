@@ -1,0 +1,31 @@
+.profile-container{
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+}
+
+.photo_user{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+}
+
+.image-user{
+    width: 180px;
+    height: 200px;
+}
+
+.content h3{
+    margin: 50px 0;
+    font-family: 'Jockey one', sans-serif;
+    font-size: 35px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.form-label{
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+}

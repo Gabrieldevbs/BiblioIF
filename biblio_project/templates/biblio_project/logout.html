@@ -1,0 +1,17 @@
+{% load static %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro concluído</title>
+    <link rel="shortcut icon" type="imagex/png" href="{% static 'images/logo_if.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container text-center mt-5">
+        <img src="{% static 'images/sucess.png' %}" alt="Sucesso">
+        <h2 class="mt-4 text-success">Logout efetuado com sucesso!</h2>
+        <a href="{% url 'biblio_project:login' %}" class="btn btn-primary mt-3">Ir para Login</a>
+    </div>
+</body>
+</html>

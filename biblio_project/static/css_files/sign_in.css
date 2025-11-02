@@ -28,8 +28,8 @@ body{
 }
 
 .form-container .formulary-content{
-    width: 600px;
-    height: 550px;
+    width: 700px;
+    height: 750px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,54 +42,17 @@ body{
 .formulary-content h3{
     font-size: 30px;
     font-family: "BBH Sans Hegarty", sans-serif;
+    margin-bottom: 40px;
 }
 
-.user-photo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
-    margin: 20px 0;
-}
 
-.user-photo img{
-    width: 80%;
+.form-container .formulary-content .needs-validation{
+    width: 90%;
     height: 80%;
-}
-
-.formulary-content .formulary{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.formulary-content .formulary #username, .formulary-content .formulary #password{
-    width: 354.56px;
-    height: 38px;
-}
-
-.formulary-content .formulary #password{
-    width: 308.56px;
-    height: 38px;
 }
 
 .form-container .formulary-content #inputGroupPrepend img{
     width: 20px;
     height: 20px;
     cursor: pointer;
-}
-
-
-.formulary-content .formulary .btn-primary{
-    width: 300px;
-}
-
-.formulary-content .formulary h4{
-    margin-top: 4px;
-    margin-bottom: 0px;
-    font-size: 14px;
-    color: #ff0000;
 }

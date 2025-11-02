@@ -1,0 +1,131 @@
+{% extends 'biblio_project/base.html' %}
+{% load static %}
+{% block link_css %} <link rel="stylesheet" href="{% static 'css_files/profile.css' %}"> {% endblock %}
+{% block content %}
+    <div class="profile-container">
+        <h3>Minha Conta</h3>
+        <form class="row g-3 needs-validation" action='{% url "biblio_project:profile" %}' method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if correct_sign_in == 'Sem foto' %}
+            <div class="photo_user">
+                <img class='image-user' src="{% static '/images/Profile.png' %}" alt="">
+            </div>
+            {% else %}
+            <div class="photo_user">
+                <img class='image-user' src="{{info_user.photo.url}}" alt="">
+            </div>
+            {% endif %}
+            <div class="col-md-12">
+                <label for="photo" class="form-label">Foto</label>
+                <input type="file" class="form-control" accept=".jpg, .png" id="photo"  name='photo' value="{{user.photo}}" required>
+            </div>
+            <div class="col-md-6">
+                <label for="first-name" class="form-label">Primeiro Nome</label>
+                <input type="text" class="form-control" id="first_name"  name='first_name' value="{{user.first_name}}" required>
+            </div>
+            <div class="col-md-6">
+                <label for="last-name" class="form-label">Sobrenome</label>
+                <input type="text" class="form-control" id="last_name" name='last_name' value="{{user.last_name}}" required>
+            </div>
+            <div class="col-12">
+                <label for="username" class="form-label">Username</label>
+                <input type="username" class="form-control" id="username" name='username' value="{{user.username}}" required>
+            </div>
+            <div class="col-12">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name='email' value="{{user.email}}" required>
+            </div>
+            <div class="col-md-6">
+                <label for="address" class="form-label">Endereço</label>
+                <input type="text" class="form-control" id="address" name='address' value="{{address.address}}" required>
+            </div>
+            <div class="col-md-6">
+                <label for="cpf" class="form-label">CPF</label>
+                <input type="text" class="form-control" id="cpf" name='cpf' value="{{info_user.cpf}}" required>
+            </div>
+            <div class="col-md-6">
+                <label for="city" class="form-label">Cidade</label>
+                <input type="text" class="form-control" id="city" name='city' value="{{address.city}}" required>
+            </div>
+            <div class="col-md-3">
+                <label for="state" class="form-label">Estado</label>
+                <select id="state" class="form-select" name='state'>
+                <option selected>{{address.state}}</option>
+                <option>Acre</option>
+                <option>Alagoas</option>
+                <option>Amapá</option>
+                <option>Amazonas</option>
+                <option>Bahia</option>
+                <option>Ceará</option>
+                <option>Distrito Federal</option>
+                <option>Espírito Santo</option>
+                <option>Goiás</option>
+                <option>Maranhão</option>
+                <option>Mato Grosso</option>
+                <option>Mato Grosso do Sul</option>
+                <option>Minas Gerais</option>
+                <option>Pará</option>
+                <option>Paraíba</option>
+                <option>Paraná</option>
+                <option>Pernambuco</option>
+                <option>Piauí</option>
+                <option>Rio de Janeiro</option>
+                <option>Rio Grande do Norte</option>
+                <option>Rio Grande do Sul</option>
+                <option>Rondônia</option>
+                <option>Roraima</option>
+                <option>Santa Catarina</option>
+                <option>São Paulo</option>
+                <option>Sergipe</option>
+                <option>Tocantins</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="zip_code" class="form-label">CEP</label>
+                <input type="text" class="form-control" id="zip_code" name='zip_code' value="{{address.zip_code}}" required>
+            </div>
+            <div class="col-1">
+                <button id='button_submit' type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+            {% if correct_sign_in == 'Correct' %}
+                <div style="
+                    background-color: #d1e7dd;
+                    color: #0f5132;
+                    border: 1px solid #badbcc;
+                    padding: 10px 20px;
+                    border-radius: 8px;
+                    width: fit-content;
+                    margin-top: 10px;
+                ">
+                    Usuário alterado com sucesso!
+                </div>
+            {% endif %}
+            {% if correct_sign_in == 'UniqueCPF' %}
+                <div style="
+                    background-color: #d1e7dd;
+                    color: #be2424;
+                    border: 1px solid #badbcc;
+                    padding: 10px 20px;
+                    border-radius: 8px;
+                    width: fit-content;
+                    margin-top: 10px;
+                ">
+                    Erro: O Cpf ou o Username já está cadastrado!
+                </div>
+            {% endif %}
+            {% if correct_sign_in == 'Error' %}
+                <div style="
+                    background-color: #d1e7dd;
+                    color: #be2424;
+                    border: 1px solid #badbcc;
+                    padding: 10px 20px;
+                    border-radius: 8px;
+                    width: fit-content;
+                    margin-top: 10px;
+                ">
+                    Aconteceu algum erro, tente novamente!
+                </div>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}

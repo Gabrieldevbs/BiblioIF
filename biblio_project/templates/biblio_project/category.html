@@ -1,0 +1,35 @@
+{% extends 'biblio_project/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Livros por Categoria</h1>
+
+{% for categoria in categorias %}
+  <section style="margin-bottom: 40px;">
+    <h2 style="color: #2c3e50;">{{ categoria.name }}</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+
+      {% for livro in categoria.book.all %}
+        <div style="
+            width: 180px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        ">
+          <img src="{{ livro.image.url }}" alt="{{ livro.title }}" style="width: 100%; height: 220px; object-fit: cover; border-radius: 8px;">
+          <h4>{{ livro.title }}</h4>
+          <p>{{ livro.author }}</p>
+          <p><strong>R$ {{ livro.buy_price }}</strong></p>
+        </div>
+      {% empty %}
+        <p>Nenhum livro nesta categoria.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% empty %}
+  <p>Nenhuma categoria cadastrada.</p>
+{% endfor %}
+
+{% endblock %}

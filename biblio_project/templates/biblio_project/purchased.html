@@ -1,0 +1,24 @@
+{% extends 'biblio_project/base.html' %}
+{% load static %}
+{% block link_css %} <link rel="stylesheet" href="{% static 'css_files/home.css' %}"> {% endblock %}
+{% block content %}
+    <div class="books-container">
+        <h2 class="hello_user">Olá, {{user.username}}! Seja Bem-Vindo</h2>
+        <h3>Livros comprados</h3>
+        <div class="books">
+            {% for purchased in purchased_books %}
+            <div class="books-content">
+                {% if purchased.image.url %}
+                    <img src="{{purchased.image.url}}" alt="">
+                {% else %}
+                    <img src="{% static 'images/Home.png' %}" alt="">
+                {% endif %}
+                <h4>{{purchased.title}}</h4>
+                <h5>{{purchased.author}}</h5>
+                <h6>R$ {{purchased.buy_price}}</h6>
+                <a href="{% url 'biblio_project:detail' purchased.id %}"><button type="button" class="btn btn-primary">Mais detalhes</button></a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

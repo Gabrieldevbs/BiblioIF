@@ -1,0 +1,21 @@
+{% extends 'biblio_project/base.html' %}
+{% load static %}
+{% block link_css %} <link rel="stylesheet" href="{% static 'css_files/detail.css' %}"> {% endblock %}
+{% block content %}
+    <div class="book-details-content">
+        <div class="book-photo">
+            <img src="{{item.image.url}}">
+        </div>
+        <div class="book-infos">
+            <h3>{{item.title}}</h3>
+            <h4>{{item.author}}</h4>
+            <h4>R${{item.buy_price}}</h4>
+            <div class="description">
+                <h5>Descrição:</h5>
+                <h6>{{item.description}}</h6>
+            </div>
+            <h5>Páginas: {{item.pages}}</h5>
+
+        </div>
+    </div>
+{% endblock %}

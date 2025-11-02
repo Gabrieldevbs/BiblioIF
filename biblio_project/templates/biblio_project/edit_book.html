@@ -1,0 +1,110 @@
+{% extends 'biblio_project/base.html' %}
+{% load static %}
+{% block link_css %} <link rel="stylesheet" href="{% static 'css_files/edit_book.css' %}"> {% endblock %}
+{% block content %}
+    <div class="profile-container">
+        <h3 id="sign_in_books">Alteração de Livros</h3>
+        <form class="row g-3" action='{% url "biblio_project:edit_book" item.id %}' method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if item.image %}
+            <div class="photo-book">
+                <img class='image-book' src="{{item.image.url}}" alt="">
+            </div>
+            {% else %}
+            <div class="photo-book">
+                <img class='image-book' src="{% static '/images/Profile.png' %}" alt="">
+            </div>
+            {% endif %}
+            <div class="col-md-12">
+                 <label for="title" class="form-label">Título do Livro</label>
+                <input type="text" class="form-control" value='{{item.title}}' id="title" name='title' required>
+            </div>
+            <div class="col-md-12">
+                <label for="author" class="form-label">Autor</label>
+                <input type="text" class="form-control" value='{{item.author}}' id="author" name='author'required>
+            </div>
+            <div class="col-md-4">
+                <label for="pages" class="form-label">Páginas</label>
+                <input type="number" class="form-control" value='{{item.pages}}' id="pages" name='pages' required>
+            </div>
+            <div class="col-md-4">
+                <label for="buy_price" class="form-label">Preço</label>
+                <input type="number" class="form-control" value='{{item.buy_price}}' id="buy_price" name='buy_price'  required>
+            </div>
+            <div class="col-md-4 radio">
+                <label for="available" class="form-label available">Disponível</label>
+                <input type="checkbox" id='available' name='available' checked required>
+            </div>
+            <div class="col-md-12">
+                <label for="description" class="form-label">Descrição</label>
+                <textarea type="text" class="form-control" id="description" name='description' required>{{item.description}}</textarea>
+            </div>
+            <div class="col-md-6">
+                <label for="name" class="form-label">Categoria</label>
+                <select id="name" class="form-select" name='name'>
+                <option selected>{{category.name}}</option>
+                <option>Ação</option>
+                <option>Aventura</option>
+                <option>Autoajuda</option>
+                <option>Autobiografia</option>
+                <option>Biografia</option>
+                <option>Comédia</option>
+                <option>Conto</option>
+                <option>Crônica</option>
+                <option>Desenvolvimento Pessoal</option>
+                <option>Distopia</option>
+                <option>Drama (Gênero teatral)</option>
+                <option>Ensaio</option>
+                <option>Espiritualidade</option>
+                <option>Fábula</option>
+                <option>Fantasia</option>
+                <option>Ficção Científica</option>
+                <option>Ficção Histórica</option>
+                <option>Gótico</option>
+                <option>Memórias</option>
+                <option>Mistério/Policial</option>
+                <option>Novela</option>
+                <option>Poesia (ou Gênero Lírico)</option>
+                <option>Religião</option>
+                <option>Romance</option>
+                <option>Suspense/Thriller</option>
+                <option>Terror/Horror</option>
+                <option>Young Adult (Jovem Adulto)</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="image" class="form-label">Foto da Capa</label>
+                <input type="file" class="form-control" accept='.png, .jpg' id="image" name='image' required>
+            </div>
+            <div class="col-1">
+                <button class="btn btn-primary" type="submit">Salvar</button>
+            </div>
+            {% if correct_sign_in == 'Correct' %}
+                <div style="
+                    background-color: #d1e7dd;
+                    color: #0f5132;
+                    border: 1px solid #badbcc;
+                    padding: 10px 20px;
+                    border-radius: 8px;
+                    width: fit-content;
+                    margin-top: 10px;
+                ">
+                    Livro cadastrado com sucesso!
+                </div>
+            {% endif %}
+            {% if correct_sign_in == 'Error' %}
+                <div style="
+                    background-color: #d1e7dd;
+                    color: #be2424;
+                    border: 1px solid #badbcc;
+                    padding: 10px 20px;
+                    border-radius: 8px;
+                    width: fit-content;
+                    margin-top: 10px;
+                ">
+                    Aconteceu algum erro, tente novamente!
+                </div>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}

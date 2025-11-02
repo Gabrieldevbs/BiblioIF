@@ -28,11 +28,14 @@
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp">
+                    <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="password" name="password">
+                    <div class="input-group has-validation">
+                        <input type="password" class="form-control" aria-describedby="inputGroupPrepend" id="password" name="password" required>
+                        <span class="input-group-text" id="inputGroupPrepend"><img id="password_eye" src="{% static 'images/Eye.png' %}" alt="Visualizar senha"></span>
+                    </div>
                     {% if answer %}
                         <h4>{{answer}}</h4>
                     {% endif %}
@@ -43,5 +46,24 @@
             </form>
         </div>
     </div>
+    <script>
+        const password_eye = document.querySelector('#password_eye')
+
+        function password_view(){
+            const input_password = document.querySelector('#password')
+            const input_password_type = input_password.getAttribute("type")
+
+            console.log(input_password_type)
+            if (input_password_type == 'password'){
+                input_password.setAttribute("type", "text")
+                password_eye.setAttribute("src", "{% static 'images/no_view.png' %}")
+            } else {
+                input_password.setAttribute("type", "password")
+                password_eye.setAttribute("src", "{% static 'images/Eye.png' %}")
+            }
+        }
+
+        password_eye.addEventListener('click', password_view)
+    </script>
 </body>
 </html>

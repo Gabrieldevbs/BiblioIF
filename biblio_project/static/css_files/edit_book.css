@@ -1,0 +1,57 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.content h3{
+    margin: 50px 0;
+    font-family: 'Jockey one', sans-serif;
+    font-size: 35px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.profile-container{
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+}
+
+.photo-book{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+}
+
+.image-book{
+    width: 180px;
+    height: 230px;
+}
+
+
+.form-label{
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.radio{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.radio .available{
+    margin-top: 38px;
+    margin-bottom: 0;
+}
+
+.radio #available{
+    margin-top: 30px;
+}
+
+#description{
+    height:200px;
+}

@@ -1,0 +1,24 @@
+{% extends 'biblio_project/base.html' %}
+{% load static %}
+{% block link_css %} <link rel="stylesheet" href="{% static 'css_files/home.css' %}"> {% endblock %}
+{% block content %}
+    <div class="books-container">
+        <h2 class="hello_user">Olá, {{user.username}}! Seja Bem-Vindo</h2>
+        <h3>Meus Favoritos</h3>
+        <div class="books">
+            {% for favorited in favorited_books %}
+            <div class="books-content">
+                {% if favorited.image.url %}
+                    <img src="{{favorited.image.url}}" alt="">
+                {% else %}
+                    <img src="{% static 'images/Home.png' %}" alt="">
+                {% endif %}
+                <h4>{{favorited.title}}</h4>
+                <h5>{{favorited.author}}</h5>
+                <h6>R$ {{favorited.buy_price}}</h6>
+                <a href="{% url 'biblio_project:detail' favorited.id %}"><button type="button" class="btn btn-primary">Mais detalhes</button></a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
