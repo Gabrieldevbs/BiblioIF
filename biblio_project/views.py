@@ -258,7 +258,7 @@ def favorited(request, id):
 
 @login_required(redirect_field_name="login/")
 def books_favorited(request):
-    favorited_books_ids = Favorite.objects.all().values_list('book_id', flat=True)
+    favorited_books_ids = Favorite.objects.filter(user_id=request.user).values_list('book_id', flat=True)
 
     favorited_books = Book.objects.filter(id__in=favorited_books_ids).distinct()
 
@@ -276,7 +276,8 @@ def purchased(request, id):
 
 @login_required(redirect_field_name="login/")
 def books_purchased(request):
-    purchased_books_ids = Purchase.objects.all().values_list('book_id', flat=True)
+
+    purchased_books_ids = Purchase.objects.filter(user_id=request.user).values_list('book_id', flat=True)
 
     purchased_books = Book.objects.filter(id__in=purchased_books_ids).distinct()
 
